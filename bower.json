@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "Bruno Sabot <brunosabot@gmail.com>"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "html5-boilerplate": "~5.2.0",
+    "jquery": "~2.1.4"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "MIT",
+  "name": "jutsu-creator",
+  "version": "0.0.2"
+}

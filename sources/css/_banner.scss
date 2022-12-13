@@ -1,0 +1,42 @@
+.njc-banner {
+  position: relative;
+  color: #555555;
+  font-size: $normalSize;
+  height: 40px;
+  background-color: #000000;
+  line-height: 40px;
+}
+.njc-banner-legend {
+  display: inline-block;
+  width: 80px;
+  padding: 0 0 0 17px;
+  vertical-align: middle;
+}
+.njc-banner-edit {
+  color: $lightColor;
+  position: absolute;
+  right: 15px;
+}
+.njc-banner-used-xp {
+  color: $notificationColor;
+}
+.njc-banner-total-xp {
+  color: $lightColor;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 82px;
+  font-weight: $mediumWeight;
+  z-index: 2;
+  height: 100%;
+  margin: 0;
+
+  &:focus {
+    outline: 0;
+  }
+
+}

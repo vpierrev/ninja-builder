@@ -1,0 +1,247 @@
+{
+  "resistancesphy": {
+    "key": "resistancesphy",
+    "name": "Résistances PHY",
+    "base": "COR",
+    "lignee": false
+  },
+  "resistancesenvi": {
+    "key": "resistancesenvi",
+    "name": "Résistances ENVI",
+    "base": "COR",
+    "lignee": false
+  },
+  "regeneration": {
+    "key": "regeneration",
+    "name": "Régénération",
+    "base": "COR",
+    "lignee": false
+  },
+  "premierssoins": {
+    "key": "premierssoins",
+    "name": "Premiers Soins",
+    "base": "COR",
+    "lignee": false
+  },
+  "intimidation": {
+    "key": "intimidation",
+    "name": "Intimidation",
+    "base": "COR",
+    "lignee": false
+  },
+  "resistancespsy": {
+    "key": "resistancespsy",
+    "name": "Résistances PSY",
+    "base": "ESP",
+    "lignee": false
+  },
+  "medecine": {
+    "key": "medecine",
+    "name": "Médecine",
+    "base": "ESP",
+    "lignee": false
+  },
+  "loisettraditions": {
+    "key": "loisettraditions",
+    "name": "Lois & Traditions",
+    "base": "ESP",
+    "lignee": false
+  },
+  "education": {
+    "key": "education",
+    "name": "Éducation",
+    "base": "ESP",
+    "lignee": false
+  },
+  "collecterdesinformations": {
+    "key": "collecterdesinformations",
+    "name": "Collecter des Informations",
+    "base": "ESP",
+    "lignee": false
+  },
+  "armesexotiques": {
+    "key": "armesexotiques",
+    "name": "Armes Exotiques",
+    "base": "ARM",
+    "lignee": false
+  },
+  "coupspecialarm": {
+    "key": "coupspecialarm",
+    "name": "Coup Spécial (ARM)",
+    "base": "ARM",
+    "lignee": false
+  },
+  "sciencedesexplosifs": {
+    "key": "sciencedesexplosifs",
+    "name": "Science des Explosifs",
+    "base": "ARM",
+    "lignee": false
+  },
+  "sciencedespieges": {
+    "key": "sciencedespieges",
+    "name": "Science des Pièges",
+    "base": "ARM",
+    "lignee": false
+  },
+  "technologie": {
+    "key": "technologie",
+    "name": "Technologie",
+    "base": "ARM",
+    "lignee": false
+  },
+  "coupspecialtai": {
+    "key": "coupspecialtai",
+    "name": "Coup Spécial (TAI)",
+    "base": "TAI",
+    "lignee": false
+  },
+  "manipulation": {
+    "key": "manipulation",
+    "name": "Manipulation",
+    "base": "TAI",
+    "lignee": false
+  },
+  "ecolejuken": {
+    "key": "ecolejuken",
+    "name": "École - Jūken",
+    "base": "TAI",
+    "lignee": false
+  },
+  "ecolegoken": {
+    "key": "ecolegoken",
+    "name": "École - Gōken",
+    "base": "TAI",
+    "lignee": false
+  },
+  "ecolechuken": {
+    "key": "ecolechuken",
+    "name": "École - Chūken",
+    "base": "TAI",
+    "lignee": false
+  },
+  "resistanceselem": {
+    "key": "resistanceselem",
+    "name": "Résistances ELEM",
+    "base": "NIN",
+    "lignee": false
+  },
+  "katon": {
+    "key": "katon",
+    "name": "Katon",
+    "base": "NIN",
+    "lignee": false
+  },
+  "doton": {
+    "key": "doton",
+    "name": "Doton",
+    "base": "NIN",
+    "lignee": false
+  },
+  "futon": {
+    "key": "futon",
+    "name": "Futon",
+    "base": "NIN",
+    "lignee": false
+  },
+  "suiton": {
+    "key": "suiton",
+    "name": "Suiton",
+    "base": "NIN",
+    "lignee": false
+  },
+  "raiton": {
+    "key": "raiton",
+    "name": "Raïton",
+    "base": "NIN",
+    "lignee": false
+  },
+  "sciencedespoisons": {
+    "key": "sciencedespoisons",
+    "name": "Science des Poisons",
+    "base": "NIN",
+    "lignee": false
+  },
+  "sciencedesdrogues": {
+    "key": "sciencedesdrogues",
+    "name": "Science des Drogues",
+    "base": "NIN",
+    "lignee": false
+  },
+  "empathie": {
+    "key": "empathie",
+    "name": "Empathie",
+    "base": "NIN",
+    "lignee": false
+  },
+  "yuryoku": {
+    "key": "yuryoku",
+    "name": "Yūryoku",
+    "base": "GEN",
+    "lignee": false
+  },
+  "iryo": {
+    "key": "iryo",
+    "name": "Iryō",
+    "base": "GEN",
+    "lignee": false
+  },
+  "sentinelle": {
+    "key": "sentinelle",
+    "name": "Sentinelle",
+    "base": "GEN",
+    "lignee": false
+  },
+  "fauxsemblants": {
+    "key": "fauxsemblants",
+    "name": "Faux Semblants",
+    "base": "GEN",
+    "lignee": false
+  },
+  "sixiemesens": {
+    "key": "sixiemesens",
+    "name": "Sixième Sens",
+    "base": "GEN",
+    "lignee": false
+  },
+  "jiton": {
+    "key": "jiton",
+    "name": "Jiton",
+    "base": "NIN",
+    "lignee": true
+  },
+  "fuin": {
+    "key": "fuin",
+    "name": "Fūin",
+    "base": "NIN"
+  },
+  "sumi": {
+    "key": "sumi",
+    "name": "Sumi",
+    "base": "NIN",
+    "lignee": true
+  },
+  "mokuton": {
+    "key": "mokuton",
+    "name": "Mokuton",
+    "base": "NIN",
+    "lignee": true
+  },
+  "kage": {
+    "key": "kage",
+    "name": "Kage",
+    "base": "NIN",
+    "lignee": true
+  },
+  "kikaichu": {
+    "key": "Kikaichu",
+    "name": "Kikaichū",
+    "base": "NIN",
+    "lignee": true
+  },
+  "kuchiyose": {
+    "key": "kuchiyose",
+    "name": "Kuchiyose",
+    "base": "NIN",
+    "lignee": true
+  }
+}

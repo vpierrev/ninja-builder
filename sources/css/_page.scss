@@ -1,0 +1,26 @@
+.njc-page-create-page {
+  background-color: $secondaryColor;
+  background-image: url(../static/ninja_builder_bg.png);
+  text-align: center;
+  padding-bottom: 20px;
+}
+.njc-page-edit-page {
+  background-color: $thirdColor;
+  padding-bottom: 70px;
+  padding-top: 45px;
+}
+.njc-page-skill-page {
+  background-color: $thirdColor;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  padding-top: 65px;
+}
+.njc-page-home-page {
+  background-color: $secondaryColor;
+  background-image: url(../static/ninja_builder_bg.png), linear-gradient(to bottom, $secondaryColor, $mainColor);
+}
+.njc-recap {
+  color: $lightColor;
+  font-size: $bigSize;
+  margin: 20px 0 40px;
+}

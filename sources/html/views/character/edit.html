@@ -1,0 +1,84 @@
+<div>
+
+  <div class="njc-header">
+    <a href="#/character/" class="njc-header-back">
+      <svg class="njc-header-back-icon">
+        <use xlink:href="static/icons.svg#svgicon-left"></use>
+      </svg>
+    </a><!--
+    --><a href="#/character/" class="njc-header-back-text">{{user.name}}, {{user|rank}}</a>
+    <span class="njc-header-misc">
+      <span class="njc-header-xp">{{user|xp:this}}</span>
+      <span class="njc-header-legend">xp</span>
+    </span>
+  </div>
+
+  <div class="njc-banner">
+    <span class="njc-banner-legend">
+      Total XP :
+    </span>
+    <input type="text" class="njc-banner-total-xp" ng-model="user.xp" ng-change="changeValue()" />
+    <span class="njc-banner-edit">Modifier</span>
+  </div>
+
+  <div class="base-items">
+    <base-edit-item ng-repeat="(key, value) in user.bases" base="characterBases[key]" value="value"></base-edit-item>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+    <div class="njc-base-item njc-base-item__fake"></div>
+  </div>
+
+  <div class="skill-items">
+    <skill-edit-item ng-repeat="(key, value) in user.competences" skill="commonSkills[key]||additionnalSkills[key]" value="value" ng-class="{first:$first}"></skill-edit-item>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+    <div class="njc-skill-item njc-skill-item__fake"></div>
+  </div>
+
+  <div class="njc-center">
+    <a class="njc-button njc-button-plain" href="#/character/create/{{currentCharacter}}">Modifier</a>
+    <a class="njc-button njc-button-alert" ng-click="deleteCurrent()">Supprimer</a>
+  </div>
+
+  <div class="njc-skill-additionnal-add" ng-show="addSkillButton" ng-click="toggleAddSkill()">
+    <svg class="njc-skill-additionnal-add-icon">
+      <use xlink:href="static/icons.svg#svgicon-plus"></use>
+    </svg>
+  </div>
+  <div class="njc-skill-additionnal-layer">
+
+  </div>
+  <div class="njc-skill-additionnal" ng-show="addSkillList">
+    <div class="njc-skill-additionnal-title">Compétences disponibles</div>
+    <div
+      class="njc-skill-additionnal-item"
+      ng-repeat="additionnalSkill in additionnalSkillsMain|missingSkill:this"
+      skill="{{additionnalSkill.key}}"
+      ng-click="addSkill(additionnalSkill.key)"
+      ng-class="{first:$first}"
+    >
+      {{additionnalSkill.name}}
+    </div>
+    <div class="njc-skill-additionnal-title">Compétences de clan</div>
+    <div
+      class="njc-skill-additionnal-item"
+      ng-repeat="additionnalSkill in additionnalSkillsClan|missingSkill:this"
+      skill="{{additionnalSkill.key}}"
+      ng-click="addSkill(additionnalSkill.key)"
+      ng-class="{first:$first}"
+    >
+      {{additionnalSkill.name}}
+    </div>
+  </div>
+
+</div>

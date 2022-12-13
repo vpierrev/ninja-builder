@@ -1,0 +1,25 @@
+<div class="home-wrapper">
+
+  <svg class="njc-list-ninja-logo">
+    <use xlink:href="static/icons.svg#svgicon-logo"></use>
+  </svg>
+
+  <a href="#/character/create/" class="njc-list-ninja-create">Créer</a>
+
+  <a href="#/character/create/" ng-show="ninjas | isEmpty" class="njc-list-ninja">
+    Vous n'avez pas encore créé de ninja
+  </a>
+
+  <div ng-repeat="(key, ninja) in ninjas" class="njc-list-ninja" ng-click="setCurrentNinja(key)">
+    <div class="njc-list-ninja-name">
+      {{ninja.name}} {{ninja|clan:true}}
+    </div>
+    {{ninja|rank}}, {{ninja.xp}} xp
+  </div>
+
+</div>
+
+<div class="app-footer">
+  <div class="app-footer-title">ninja builder V1.0</div>
+  NoSquare Labs &amp; <a href="http://naruto-jdr.com" class="app-footer-link">Naruto-jdr.com</a>
+</div>

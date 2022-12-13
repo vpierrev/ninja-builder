@@ -1,0 +1,28 @@
+.njc-detail-skill {
+  border-radius: 4px;
+  background: $lightColor;
+  margin: 5px 30px;
+  font-size: $smallSize;
+  padding: 10px 15px;
+  color: $darkColor;
+  text-transform: uppercase;
+}
+.njc-detail-skill-title {
+  margin-bottom: 5px;
+  font-size: $normalSize;
+  font-weight: $mediumWeight;
+
+  &:last-child {
+    margin-bottom: 0;
+
+    .njc-detail-skill-score {
+      color: $mainColor;
+    }
+
+  }
+
+}
+.njc-detail-skill-score {
+  color: #947bff;
+  margin-left: 3px;
+}

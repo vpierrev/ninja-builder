@@ -1,0 +1,65 @@
+.njc-form-item {
+  margin: 25px 0;
+
+  input {
+    color: $darkColor;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $darkColor;
+    border-radius: 0;
+    max-width: 280px;
+    width: 90%;
+    height: 33px;
+    font-weight: $boldWeight;
+    font-size: $hugeSize;
+    outline: 0;
+    text-decoration: none;
+    text-align: center;
+  }
+  label {
+    display: block;
+    text-transform: uppercase;
+    font-size: $smallSize;
+    line-height: 30px;
+    color: $lightColor;
+    font-weight: $normalWeight;
+  }
+  option {
+    color: $darkColor;
+  }
+  select {
+    color: transparent;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $darkColor;
+    border-radius: 0;
+    max-width: 280px;
+    width: 90%;
+    height: 33px;
+    font-weight: $mediumWeight;
+    font-size: $hugeSize;
+    outline: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+}
+.njc-form-item-select-faker {
+  color: $darkColor;
+  position: absolute;
+  width: 100%;
+  height: 32px;
+  font-weight: $boldWeight;
+  font-size: $hugeSize;
+  z-index: 1;
+}
+
+.njc-form-logo {
+  height: 90px;
+  padding: 25px 0 0;
+}
+.njc-form-logo-icon {
+  height: 48px;
+  width: 48px;
+  fill: $lightColor;
+}

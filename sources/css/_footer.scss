@@ -1,0 +1,16 @@
+.app-footer {
+  color: $lightColor;
+  font-size: $smallSize;
+  font-weight: $lightWeight;
+  text-align: center;
+  height: 80px;
+  padding: 30px 0 0 0;
+  box-sizing: border-box;
+}
+.app-footer-title {
+  text-transform: uppercase;
+  font-weight: $mediumWeight;
+}
+.app-footer-link {
+  color: inherit;
+}

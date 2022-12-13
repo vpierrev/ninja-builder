@@ -1,0 +1,34 @@
+/* Thin font-face */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: $thinWeight;
+  src: local('Roboto Thin'), local('Roboto-Thin'), url('../static/roboto-thin.ttf') format('truetype');
+}
+
+/* Light font-face */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: $lightWeight;
+  src: local('Roboto Light'), local('Roboto-Light'), url('../static/roboto-light.ttf') format('truetype');
+}
+
+/* Normal font-face */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: $normalWeight;
+  src: local('Roboto'), local('Roboto Regular'), local('Roboto-Regular'), url('../static/roboto-regular.ttf') format('truetype');
+}
+
+/* Medium font-face */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: $mediumWeight;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('../static/roboto-medium.ttf') format('truetype');
+}
+
+/* Bold font-face */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: $boldWeight;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('../static/roboto-bold.ttf') format('truetype');
+}

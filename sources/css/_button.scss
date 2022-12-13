@@ -1,0 +1,33 @@
+.njc-button {
+  border-radius: 4px;
+  border: 1px solid;
+  box-sizing: border-box;
+  color: $lightColor;
+  display: inline-block;
+  font-size: $smallSize;
+  height: 40px;
+  line-height: 38px;
+  margin-top: 10px;
+  padding: 0 25px;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+  &-light {
+    border-color: $lightColor;
+  }
+  &-plain {
+    background: $darkColor;
+    border-color: $darkColor;
+  }
+  &-alert {
+    background: $mainColor;
+    border-color: $mainColor;
+
+    .njc-page-skill & {
+      margin-top: 30px;
+    }
+
+  }
+
+}

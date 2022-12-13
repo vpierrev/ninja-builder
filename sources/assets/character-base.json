@@ -1,0 +1,30 @@
+{
+  "cor": {
+    "key": "cor",
+    "name": "Corps"
+  },
+  "esp": {
+    "key": "esp",
+    "name": "Esprit"
+  },
+  "arm": {
+    "key": "arm",
+    "name": "Armes"
+  },
+  "tai": {
+    "key": "tai",
+    "name": "Taijutsu"
+  },
+  "nin": {
+    "key": "nin",
+    "name": "Ninjutsu"
+  },
+  "gen": {
+    "key": "gen",
+    "name": "Genjutsu"
+  },
+  "lign": {
+    "key": "lign",
+    "name": "Lignée"
+  }
+}

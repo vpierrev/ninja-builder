@@ -1,0 +1,15 @@
+<div class="njc-base-item njc-base-{{base.key}}" data-key="{{base.key}}">
+  <span class="njc-base-item__total">{{value}}</span>
+  <span class="njc-base-item__name">{{base.name}}</span>
+  <span class="njc-base-item__minus" ng-click="$parent.setBase(base.key, -1)">
+    <svg class="njc-base-item__minus-icon">
+      <use xlink:href="static/icons.svg#svgicon-minus"></use>
+    </svg>
+  </span>
+  <span class="njc-base-item__score">{{value}}</span>
+  <span class="njc-base-item__plus" ng-click="$parent.setBase(base.key, 1)">
+    <svg class="njc-base-item__plus-icon">
+      <use xlink:href="static/icons.svg#svgicon-plus"></use>
+    </svg>
+  </span>
+</div>

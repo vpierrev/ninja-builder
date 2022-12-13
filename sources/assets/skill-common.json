@@ -1,0 +1,62 @@
+{
+  "physique": {
+    "key": "physique",
+    "name": "Physique",
+    "base": "COR"
+  },
+  "mental": {
+    "key": "mental",
+    "name": "Mental",
+    "base": "ESP"
+  },
+  "armessimples": {
+    "key": "armessimples",
+    "name": "Armes Simples",
+    "base": "ARM"
+  },
+  "parade": {
+    "key": "parade",
+    "name": "Parade",
+    "base": "ARM"
+  },
+  "corpsacorps": {
+    "key": "corpsacorps",
+    "name": "Corps à Corps",
+    "base": "TAI"
+  },
+  "esquive": {
+    "key": "esquive",
+    "name": "Esquive",
+    "base": "TAI"
+  },
+  "camouflage": {
+    "key": "camouflage",
+    "name": "Camouflage",
+    "base": "NIN"
+  },
+  "vigilance": {
+    "key": "vigilance",
+    "name": "Vigilance",
+    "base": "NIN"
+  },
+  "survie": {
+    "key": "survie",
+    "name": "Survie",
+    "base": "NIN"
+  },
+  "henge": {
+    "key": "henge",
+    "name": "Henge",
+    "base": "NIN"
+  },
+  "kawarimi": {
+    "key": "kawarimi",
+    "name": "Kawarimi",
+    "base": "GEN"
+  },
+  "gensou": {
+    "key": "gensou",
+    "name": "Gensou",
+    "base": "GEN"
+  }
+}

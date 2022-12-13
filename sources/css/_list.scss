@@ -1,0 +1,35 @@
+.njc-list-ninja {
+  cursor: pointer;
+  display: block;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-size: $smallSize;
+  color: $lightColor;
+  text-transform: uppercase;
+  padding: 18px 0;
+  margin: 10px 30px;
+  text-align: center;
+}
+.njc-list-ninja-logo {
+  height: 40px;
+  width: 40px;
+  fill: $darkColor;
+  top: 20px;
+  left: 20px;
+  position: absolute;
+}
+.njc-list-ninja-create {
+  display: block;
+  height: 75px;
+  line-height: 75px;
+  font-size: $bigSize;
+  color: $lightColor;
+  text-align: right;
+  padding-right: 30px;
+}
+.njc-list-ninja-name {
+  color: $darkColor;
+  font-size: $hugeSize;
+  text-transform: none;
+  font-weight: $boldWeight;
+}

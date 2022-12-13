@@ -1,0 +1,62 @@
+.njc-skill-additionnal {
+  z-index: 2;
+  bottom: 60px;
+  right: 10px;
+  max-width: 215px;
+  max-height: 400px;
+  position: fixed;
+  height: 65%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 3px 10px;
+  overflow: auto;
+  color: $lightColor;
+}
+.njc-skill-additionnal-title {
+  font-size: $smallSize;
+  padding: 10px 2px 3px;
+  text-transform: uppercase;
+  color: $mainColor;
+  border-bottom: 1px solid $mainColor;
+  font-weight: $boldWeight;
+}
+.njc-skill-additionnal-add {
+  z-index: 2;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: $mainColor;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: $lightColor;
+  cursor: pointer;
+  padding: 10px 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.njc-skill-additionnal-add-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  fill: $lightColor;
+  height: 14px;
+  width: 14px;
+}
+.njc-skill-additionnal-item {
+  cursor: pointer;
+  line-height: 40px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  padding: 0 10px;
+  font-size: $normalSize;
+
+  &.first {
+    border-top: 0;
+  }
+
+}
