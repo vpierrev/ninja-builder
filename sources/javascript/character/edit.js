@@ -52,7 +52,6 @@ NJCControllers.controller('CharacterEdit', [
 
       sUser.addSkill(skill);
       checkCanAddSkill();
-
     };
 
     $scope.changeValue = function () {

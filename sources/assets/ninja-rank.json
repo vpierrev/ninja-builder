@@ -2,7 +2,6 @@
   "genin": {
     "key": "genin",
     "baseMax": 5,
-    "skill": 7,
     "name": "Genin",
     "rank": {
       "D": 0,
@@ -14,7 +13,6 @@
   "chuunin": {
     "key": "chuunin",
     "baseMax": 7,
-    "skill": 8,
     "name": "Chūnin",
     "rank": {
       "D": 700,
@@ -26,7 +24,6 @@
   "jounin": {
     "key": "jounin",
     "baseMax": 10,
-    "skill": 9,
     "name": "Jounin",
     "rank": {
       "D": 1700,
@@ -41,7 +38,6 @@
   "sensei": {
     "key": "sensei",
     "baseMax": 12,
-    "skill": 10,
     "name": "Sensei",
     "rank": {
       "S": 4500
@@ -50,7 +46,6 @@
   "sannin": {
     "key": "sannin",
     "baseMax": 14,
-    "skill": 11,
     "name": "Sannin",
     "rank": {
       "AA": 6500
@@ -59,7 +54,6 @@
   "kage": {
     "key": "kage",
     "baseMax": 16,
-    "skill": 12,
     "name": "Kage",
     "rank": {
       "S+": 8500

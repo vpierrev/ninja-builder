@@ -12,29 +12,42 @@ NJCApp.factory('sUser', [
       }
 
       return max;
+    }
 
+    function _getMaxSkillCount() {
+
+      var max = 5;
+      var maxBase = _getMaxBase();
+
+      switch (true) {
+        case maxBase >= 10:
+          max++;
+          /*falls through*/
+        case maxBase >= 7:
+          max++;
+          /*falls through*/
+        case maxBase >= 5:
+          max++;
+          break;
+      }
+
+      return max;
     }
 
     return {
 
       addSkill: function (skill) {
 
-        return this.hasSkillSlot().then(function () {
+        _user.competences[skill] = 1;
+        _user.additionnalCompetencesCount += 1;
+        this.save();
 
-          _user.competences[skill] = 1;
-          _user.additionnalCompetencesCount += 1;
-          this.save();
-
-          window.ga('send', 'event', {
-            "eventCategory": "skill",
-            "eventAction": "add",
-            "dimension2": skill
-          });
-
-          return $q.resolve();
-
-        }.bind(this));
-
+        window.ga('send', 'event', {
+          "eventCategory": "skill",
+          "eventAction": "add",
+          "dimension2": skill
+        });
+        return $q.resolve();
       },
 
       checkIntegrity: function (_user) {
@@ -138,10 +151,14 @@ NJCApp.factory('sUser', [
 
         sNinjaRank.load().then(function (data) {
 
-          var targetCount = data[_user.rank].skill;
+          var targetCount = _getMaxSkillCount();
+
+          /*
+          Je n'ai pas compris pourquoi ce code était là, je l'ai commenté pour entre sûr
+
           if (data[_user.rank].baseMax > _getMaxBase()) {
             targetCount -= 1;
-          }
+          }*/
 
           if (targetCount > _user.additionnalCompetencesCount) {
             defer.resolve(targetCount);
@@ -173,6 +190,8 @@ NJCApp.factory('sUser', [
 
         sNinjaRank.load().then(function (data) {
 
+          var oldMaxSkillCount = _getMaxSkillCount();
+
           var finalValue = _user.bases[base] + add;
           if (finalValue > data[_user.rank].baseMax) {
             finalValue = data[_user.rank].baseMax;
@@ -181,6 +200,12 @@ NJCApp.factory('sUser', [
           }
 
           _user.bases[base] = finalValue;
+          var newMaxSkillCount = _getMaxSkillCount();
+
+          if ((oldMaxSkillCount !== newMaxSkillCount) && (newMaxSkillCount < _user.additionnalCompetencesCount)) {
+            _user.bases[base] -= add;
+            return;
+          }
 
           for (var skill in _user.competences) {
             this.setSkill(skill, 0);
