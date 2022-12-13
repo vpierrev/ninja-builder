@@ -350,14 +350,10 @@ gulp.task('release', ['bump'], function () {
   var message = 'Bump to revision ' + v;
 
   /*return gulp.src('./')
-=======
-  return gulp.src('./')
->>>>>>> a4979f9fa25486a3c0bcaeb7c73c1a811e550736
     .pipe(git.add())
     .pipe(git.commit(message))
     .pipe(git.tag(v, message))
     .pipe(git.push('origin', 'master', '--tags'))
-<<<<<<< HEAD
     .pipe(gulp.dest('./'));*/
   return gulp;
 });
