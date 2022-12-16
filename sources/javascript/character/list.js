@@ -2,13 +2,10 @@ NJCControllers.controller('CharacterList', [
   '$rootScope', '$scope', '$location', '$window', 'sNinjaClan', 'sNinjaRank', 'sUser',
   function ($rootScope, $scope, $location, $window, sNinjaClan, sNinjaRank, sUser) {
 
-    window.ga('send', 'pageview', {
-      "page": $location.url(),
-      "title": "Accueil"
-    });
-
     $rootScope.pageColor = '#947bff';
     $rootScope.pageName = 'njc-page-home';
+
+    sUser.setCurrent();
 
     sUser.getAll().then(function (ninjas) {
       $scope.ninjas = ninjas;

@@ -19,20 +19,9 @@ NJCControllers.controller('CharacterEdit', [
     $scope.addSkillList = false;
     $scope.addSkillButton = false;
 
-    window.ga('send', 'pageview', {
-      "page": $location.url(),
-      "title": "Fiche",
-      "dimension1": $scope.user.clan.name
-    });
-
     $scope.deleteCurrent = function () {
 
       sUser.remove(true);
-
-      window.ga('send', 'event', {
-        "eventCategory": "user",
-        "eventAction": "remove"
-      });
 
     };
 
@@ -52,15 +41,6 @@ NJCControllers.controller('CharacterEdit', [
 
       sUser.addSkill(skill);
       checkCanAddSkill();
-    };
-
-    $scope.changeValue = function () {
-
-      window.ga('send', 'event', {
-        "eventCategory": "xp",
-        "eventAction": "change"
-      });
-
     };
 
     $scope.currentCharacter = localStorage.getItem('currentCharacter');

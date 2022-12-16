@@ -41,12 +41,6 @@ NJCApp.factory('sUser', [
         _user.competences[skill] = 1;
         _user.additionnalCompetencesCount += 1;
         this.save();
-
-        window.ga('send', 'event', {
-          "eventCategory": "skill",
-          "eventAction": "add",
-          "dimension2": skill
-        });
         return $q.resolve();
       },
 
@@ -366,12 +360,6 @@ NJCApp.factory('sUser', [
 
             localStorage.setItem(currentCharacter, JSON.stringify(_user));
             localStorage.setItem('currentCharacter', currentCharacter);
-
-            window.ga('send', 'event', {
-              "eventCategory": "user",
-              "eventAction": "create",
-              "dimension1": _user.clan.name
-            });
 
           }
 

@@ -13,13 +13,6 @@ NJCControllers.controller('skillDetail', [
     $scope.deleteSkill = function (key) {
 
       sUser.removeSkill(key, true);
-
-      window.ga('send', 'event', {
-        "eventCategory": "skill",
-        "eventAction": "remove",
-        "dimension2": key
-      });
-
     };
 
     sCharacterBase.load().then(function (data) {
@@ -33,12 +26,6 @@ NJCControllers.controller('skillDetail', [
           $scope.score = sUser.getSkillValues($scope.skill);
           $scope.isAdditionnal = false;
           $scope.base = $scope.characterBases[data[$routeParams.key].base.toLowerCase()];
-
-          window.ga('send', 'pageview', {
-            "page": $location.url(),
-            "title": "Score naturel " + $scope.skill
-          });
-
         }
       });
 
@@ -49,12 +36,6 @@ NJCControllers.controller('skillDetail', [
           $scope.score = sUser.getSkillValues($scope.skill);
           $scope.isAdditionnal = true;
           $scope.base = $scope.characterBases[data[$routeParams.key].base.toLowerCase()];
-
-          window.ga('send', 'pageview', {
-            "page": $location.url(),
-            "title": "Score naturel " + $scope.skill
-          });
-
         }
       });
 

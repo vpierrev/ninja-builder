@@ -4,26 +4,26 @@ NJCControllers.filter('rank', ['sNinjaRank', function (sNinjaRank) {
   var serviceInvoked = false;
   var filter = function (input, short) {
 
-    var value = data[input.rank].name;
+    var rankName = data[input.rank].name;
 
     if (short !== true) {
 
-      value += ' de rang ';
+      rankName += ' de rang ';
 
-      var rank = 'D';
+      var rankLetter = 'D';
       var xp = input.xp - getXp(input);
 
       for (var i in data[input.rank].rank) {
         if (xp > data[input.rank].rank[i]) {
-          rank = i;
+          rankLetter = i;
         }
       }
 
-      value += rank;
+      rankName += rankLetter;
 
     }
 
-    return value;
+    return rankName;
 
   };
 

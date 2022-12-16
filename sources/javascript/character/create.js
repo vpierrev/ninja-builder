@@ -4,13 +4,20 @@ NJCControllers.controller('CharacterCreate', [
 
     $scope.user = sUser.get();
     $scope.changeName = sUser.setName;
-    $scope.updateRank = sUser.setRank;
+    $scope.updateRank = function (rank) {
+        sUser.setRank(rank);
+        $scope.user = sUser.get();
+    };
     $scope.updateClan = function (clan) {
 
       sUser.setClan(clan).then(function (user) {
         $scope.user = user;
       });
+    };
+    $scope.updateName = function (name) {
 
+      sUser.setName(name);
+      $scope.user = sUser.get();
     };
     $scope.validate = function () {
 
@@ -34,8 +41,6 @@ NJCControllers.controller('CharacterCreate', [
       trackingData.title = 'Edition';
       trackingData.dimension1 = sUser.get().clan;
     }
-
-    window.ga('send', 'pageview', trackingData);
 
     sNinjaRank.load().then(function (data) {
       $scope.ninjaRanks = data;
