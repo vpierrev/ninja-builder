@@ -288,6 +288,11 @@ NJCApp.factory('sUser', [
           "bases": {},
           "competences": {},
           "skills": {},
+          "clan": {
+            "key": "aburame",
+            "name": "Aburame",
+            "lignee": {}
+          },
           "rank": "genin",
           "additionnalCompetencesCount": 0,
           "xp": 10
@@ -318,6 +323,11 @@ NJCApp.factory('sUser', [
           _user = {
             "bases": {},
             "skills": {},
+            "clan": {
+              "key": "aburame",
+              "name": "Aburame",
+              "lignee": {}
+            },
             "rank": "genin",
             "additionnalCompetencesCount": 0,
             "xp": 10
