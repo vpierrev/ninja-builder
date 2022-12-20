@@ -14,6 +14,18 @@ NJCApp.factory('sSkillExtra', ['$q', '$http', function ($q, $http) {
 
   }
 
+  function sort(obj) {
+
+    var result = {};
+
+    Object.keys(obj).sort().forEach(function (key) {
+        result[key] = obj[key];
+    });
+
+    return result;
+
+  }
+
   var defer;
   var skills;
 
@@ -40,16 +52,16 @@ NJCApp.factory('sSkillExtra', ['$q', '$http', function ($q, $http) {
     },
     getClan: function () {
 
-      return filter(skills, function (item) {
+      return sort(filter(skills, function (item) {
         return item.lignee === false;
-      });
+      }));
 
     },
     getMain: function () {
 
-      return filter(skills, function (item) {
+      return sort(filter(skills, function (item) {
         return item.lignee === true;
-      });
+      }));
 
     }
 
