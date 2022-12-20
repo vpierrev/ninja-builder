@@ -12,6 +12,23 @@
   padding: 3px 10px;
   overflow: auto;
   color: $lightColor;
+
+  scrollbar-width: thin;
+  scrollbar-color: $darkColor $lightColor;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $lightColor;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $darkColor;
+    border-radius: 20px;
+    border: 1px solid $lightColor;
+  }
 }
 .njc-skill-additionnal-title {
   font-size: $smallSize;
