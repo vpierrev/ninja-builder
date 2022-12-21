@@ -1,12 +1,10 @@
 var argv = require('yargs').argv;
 var autoprefixer = require('gulp-autoprefixer');
-var bump = require('gulp-bump');
 var changed = require('gulp-changed');
 var concat = require('gulp-concat');
-var connect = require('gulp-connect');
+var exec = require('child_process').exec;
 var footer = require('gulp-footer');
 var fs = require('fs');
-var git = require('gulp-git');
 var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var gutil = require('gulp-util');
@@ -15,7 +13,6 @@ var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var manifest = require('gulp-manifest');
 var map = require('map-stream');
-var merge = require('merge-stream');
 var minifycss = require('gulp-minify-css');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass')(require('sass'));
@@ -23,6 +20,7 @@ var svgsprite = require('gulp-svg-sprite');
 var uglify = require('gulp-uglify');
 
 var node;
+var newProcess;
 
 // Custom handler on a task fatal error
 var customErrorHandler = function (error) {
@@ -70,7 +68,7 @@ var customJshintReporter = function (notice) {
 // Log processing mode
 gulp.environnement = argv.env || 'dev';
 gulp.filter = argv.filter || 'updated';
-gulp.target = gulp.filter === 'dev' ? 'build/' : 'dist/';
+gulp.target = 'static/';
 
 if (argv.tasksSimple !== true) {
 
@@ -89,13 +87,13 @@ gulp.task('copy', function () {
   // @TODO add copied files
 
   gulp.src('sources/assets/**/*')
-    .pipe(gulp.dest('dist/assets/'));
+    .pipe(gulp.dest('static/assets/'));
 
   gulp.src('sources/static/**/*')
-    .pipe(gulp.dest('dist/static/'));
+    .pipe(gulp.dest('static/static/'));
 
   gulp.src('sources/font/**/*')
-    .pipe(gulp.dest('dist/static/'));
+    .pipe(gulp.dest('static/static/'));
 
 });
 
@@ -107,8 +105,6 @@ gulp.task('javascript', function () {
   // - Minify if in production mode
   // - @TODO add sourcemap
   return gulp.src([
-      'bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js',
-      'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-animate/angular-animate.js',
@@ -141,8 +137,8 @@ gulp.task('javascript', function () {
 gulp.task('css', function () {
 
   gulp.src([
-      'bower_components/html5-boilerplate/dist/css/normalize.css',
-      'bower_components/html5-boilerplate/dist/css/main.css'
+      'bower_components/html5-boilerplate/static/css/normalize.css',
+      'bower_components/html5-boilerplate/static/css/main.css'
     ])
     .pipe(plumber({
       errorHandler: customErrorHandler
@@ -231,21 +227,20 @@ gulp.task('html', function () {
   gulp.src('sources/index.html')
     .pipe(header(fs.readFileSync('sources/html/header.html', 'utf-8')))
     .pipe(footer(fs.readFileSync('sources/html/footer.html', 'utf-8')))
-    .pipe(gulp.dest(gulp.target + ''))
+    .pipe(gulp.dest('views'))
     .pipe(concat('offline.html'))
-    .pipe(gulp.dest(gulp.target + ''));
+    .pipe(gulp.dest('views'));
 
   gulp.src('sources/html/views/**/*')
-    .pipe(gulp.dest(gulp.target + 'views/'))
-    .pipe(connect.reload());
+    .pipe(gulp.dest(gulp.target + 'views/'));
 
 });
 
 // Create the cache manifest
 gulp.task('manifest', function () {
 
-  return gulp.src(['dist/**/*'], {
-      base: './dist/'
+  return gulp.src(['static/**/*'], {
+      base: './static/'
     })
     .pipe(manifest({
       hash: true,
@@ -256,7 +251,7 @@ gulp.task('manifest', function () {
       fallback: ['/ /offline.html'],
       timestamp: false
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('static'));
 
 });
 
@@ -303,13 +298,11 @@ gulp.task('watch', ['install'], function () {
 
 });
 
-gulp.task('server', function () {
+gulp.task('server', function (cb) {
 
-  connect.server({
-    root: 'dist',
-    livereload: true,
-    port: 80
-  });
+  newProcess = exec('node main.js');
+  newProcess.stdout.pipe(process.stdout);
+  newProcess.stderr.pipe(process.stderr);
 });
 // Execute code testing actions
 gulp.task('test', ['validate', 'unit'], function () {});
@@ -322,43 +315,10 @@ gulp.task('install', ['javascript', 'css', 'image', 'copy', 'html', 'doc'], func
   return gulp.start('manifest');
 });
 
-// Bump to a specific revision. Listen to --major, --minor or --prerelease parameter
-gulp.task('bump', function () {
-
-  var params = {};
-  if (argv.major) {
-    params.type = 'major';
-  } else if (argv.minor) {
-    params.type = 'minor';
-  } else if (argv.prerelease) {
-    params.type = 'prerelease';
-  } else {
-    params.type = 'patch';
-  }
-
-  return gulp.src(['./package.json', './bower.json'])
-    .pipe(bump(params))
-    .pipe(gulp.dest('./'));
-
-});
-
-// Bump to and release a new version of the application. Listen to --major, --minor or --prerelease parameter
-gulp.task('release', ['bump'], function () {
-
-  var pkg = require('./package.json');
-  var v = 'v' + pkg.version;
-  var message = 'Bump to revision ' + v;
-
-  /*return gulp.src('./')
-    .pipe(git.add())
-    .pipe(git.commit(message))
-    .pipe(git.tag(v, message))
-    .pipe(git.push('origin', 'master', '--tags'))
-    .pipe(gulp.dest('./'));*/
-  return gulp;
-});
-
 process.on('exit', function () {
+  if (newProcess) {
+    newProcess.kill();
+  }
   if (node) {
     node.kill();
   }
