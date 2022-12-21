@@ -136,21 +136,6 @@ gulp.task('javascript', function () {
 // Process CSS files
 gulp.task('css', function () {
 
-  gulp.src([
-      'bower_components/html5-boilerplate/static/css/normalize.css',
-      'bower_components/html5-boilerplate/static/css/main.css'
-    ])
-    .pipe(plumber({
-      errorHandler: customErrorHandler
-    }))
-    .pipe(concat('lib.css'))
-    .pipe(autoprefixer(
-      'last 2 version', 'safari 5', 'ie 8', 'ie 9', 'ie 10', 'ie 11', 'opera 12.1', 'ios 6', 'Android 4',
-      'iOS 6', 'iOS 7', 'iOS 8'
-    ))
-    .pipe(gulpif(gulp.environnement === 'prod', minifycss()))
-    .pipe(gulp.dest(gulp.target + 'css/'));
-
   // Process sources css files:
   // - Autoprefixer
   // - Minify if in production mode
