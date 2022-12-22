@@ -29,6 +29,12 @@ NJCControllers.controller('CharacterCreate', [
     $rootScope.pageColor = '#947bff';
     $rootScope.pageName = 'njc-page-create';
 
+    if (typeof ($routeParams.who) === 'undefined') {
+      sUser.reset();
+    } else {
+      sUser.setCurrent($routeParams.who);
+    }
+
     sNinjaRank.load().then(function (data) {
       $scope.ninjaRanks = data;
     });
