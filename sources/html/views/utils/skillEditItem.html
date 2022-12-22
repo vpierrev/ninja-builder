@@ -1,13 +1,13 @@
 <div class="njc-skill-item njc-skill-{{skill.key}}" data-key="{{skill.key}}">
-  <span class="njc-skill-item__total">{{$parent.user|skillTotal:skill}}</span>
-  <a class="njc-skill-item__name" href="#/skill/detail/{{skill.key}}">{{skill.name}}</a>
-  <span class="njc-skill-item__minus" ng-click="$parent.setSkill(skill.key, -1)">
+    <span class="njc-skill-item__total">{{$parent.character | skillTotal:skill}}</span>
+    <a class="njc-skill-item__name" href="#/skill/detail/{{skill.key}}">{{skill.name}}</a>
+    <span class="njc-skill-item__minus" ng-click="$parent.setSkill(skill.key, -1)">
     <svg class="njc-skill-item__minus-icon">
       <use xlink:href="static/icons.svg#svgicon-minus"></use>
     </svg>
   </span>
-  <span class="njc-skill-item__score">{{value}}</span>
-  <span class="njc-skill-item__plus" ng-click="$parent.setSkill(skill.key, 1)">
+    <span class="njc-skill-item__score">{{value}}</span>
+    <span class="njc-skill-item__plus" ng-click="$parent.setSkill(skill.key, 1)">
     <svg class="njc-skill-item__plus-icon">
       <use xlink:href="static/icons.svg#svgicon-plus"></use>
     </svg>

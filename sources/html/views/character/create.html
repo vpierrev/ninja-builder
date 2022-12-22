@@ -1,35 +1,35 @@
 <div class="njc-form-logo">
-  <svg class="njc-form-logo-icon">
-    <use xlink:href="static/icons.svg#svgicon-konoha"></use>
-  </svg>
+    <svg class="njc-form-logo-icon">
+        <use xlink:href="static/icons.svg#svgicon-konoha"></use>
+    </svg>
 </div>
 
 <div class="njc-form-item">
-  <input type="text" class="form-field" name="ninja-name" ng-model="user.name" ng-change="updateName(user.name)"/>
-  <label>Prénom du ninja</label>
+    <input type="text" class="form-field" name="ninja-name" ng-model="character.name" ng-change="updateName(character.name)"/>
+    <label>Prénom du ninja</label>
 </div>
 
 <div class="njc-form-item">
-  <div class="njc-form-item-select-faker">{{user.clan.name}}</div>
-  <select class="form-select" name="ninja-clan" ng-model="user.clan.key" ng-change="updateClan(user.clan.key)">
-    <option ng-repeat="clan in ninjaClans" value="{{clan.key}}">{{clan.name}}</option>
-  </select>
-  <label>Clan du ninja</label>
+    <div class="njc-form-item-select-faker">{{character.clan.name}}</div>
+    <select class="form-select" name="ninja-clan" ng-model="character.clan.key" ng-change="updateClan(character.clan.key)">
+        <option ng-repeat="clan in ninjaClans" value="{{clan.key}}">{{clan.name}}</option>
+    </select>
+    <label>Clan du ninja</label>
 </div>
 
 <div class="njc-form-item">
-  <div class="njc-form-item-select-faker">{{ninjaRanks[user.rank].name}}</div>
-  <select class="form-select" name="ninja-rank" ng-model="user.rank" ng-change="updateRank(user.rank)">
-    <option ng-repeat="rank in ninjaRanks" value="{{rank.key}}">{{rank.name}}</option>
-  </select>
-  <label>Rang du ninja</label>
+    <div class="njc-form-item-select-faker">{{ninjaRanks[character.rank].name}}</div>
+    <select class="form-select" name="ninja-rank" ng-model="character.rank" ng-change="updateRank(character.rank)">
+        <option ng-repeat="rank in ninjaRanks" value="{{rank.key}}">{{rank.name}}</option>
+    </select>
+    <label>Rang du ninja</label>
 </div>
 
-<div class="njc-recap" ng-style="{'visibility': user.name && user.clan ? 'visible' : 'hidden'}">
-  <div>
-    {{user.name || "???"}},
-  </div>
-  {{user|rank:true || "???"}} {{user|clan}}
+<div class="njc-recap" ng-style="{'visibility': character.name && character.clan ? 'visible' : 'hidden'}">
+    <div>
+        {{character.name || "???"}},
+    </div>
+    {{character | rank:true || "???"}} {{character | clan}}
 </div>
 
 <a href="#/character/" class="njc-button njc-button-light">retour</a>

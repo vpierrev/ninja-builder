@@ -1,42 +1,43 @@
 <div>
 
-  <div class="njc-header">
-    <a href="#/character/edit/" class="njc-header-back">
-      <svg class="njc-header-back-icon">
-        <use xlink:href="static/icons.svg#svgicon-left"></use>
-      </svg>
-    </a><!--
+    <div class="njc-header">
+        <a href="#/character/edit/" class="njc-header-back">
+            <svg class="njc-header-back-icon">
+                <use xlink:href="static/icons.svg#svgicon-left"></use>
+            </svg>
+        </a><!--
     --><a href="#/character/edit/" class="njc-header-back-text">Retour</a>
-  </div>
-
-  <div class="njc-detail-skill">
-    <div class="njc-detail-skill-title">Score naturel</div>
-    {{skill.name}}
-    <span class="njc-detail-skill-score">{{score.skill}}</span>
-  </div>
-  <div class="njc-detail-skill">
-    <div class="njc-detail-skill-title">Score de la base</div>
-    {{base.name}}
-    <span class="njc-detail-skill-score">{{score.base}}</span>
-  </div>
-  <div class="njc-detail-skill" ng-show="score.clan > 0">
-    <div class="njc-detail-skill-title">Score de clan</div>
-    {{skill.name}}
-    <span class="njc-detail-skill-score">{{score.clan}}</span>
-  </div>
-  <div class="njc-detail-skill">
-    <div class="njc-detail-skill-title">
-      Score total
-      <span class="njc-detail-skill-score">{{score.total}}</span>
     </div>
-  </div>
-  <!--div class="njc-detail-skill">
-    Bonus de lignée
-    <span class="njc-detail-skill-score"></span>
-  </div-->
 
-  <div class="njc-center">
-    <a class="njc-button njc-button-alert" ng-show="isAdditionnal" ng-click="deleteSkill(skill.key)">Supprimer la compétence</a>
-  </div>
+    <div class="njc-detail-skill">
+        <div class="njc-detail-skill-title">Score naturel</div>
+        {{skill.name}}
+        <span class="njc-detail-skill-score">{{score.skill}}</span>
+    </div>
+    <div class="njc-detail-skill">
+        <div class="njc-detail-skill-title">Score de la base</div>
+        {{base.name}}
+        <span class="njc-detail-skill-score">{{score.base}}</span>
+    </div>
+    <div class="njc-detail-skill" ng-show="score.clan > 0">
+        <div class="njc-detail-skill-title">Score de clan</div>
+        {{skill.name}}
+        <span class="njc-detail-skill-score">{{score.clan}}</span>
+    </div>
+    <div class="njc-detail-skill">
+        <div class="njc-detail-skill-title">
+            Score total
+            <span class="njc-detail-skill-score">{{score.total}}</span>
+        </div>
+    </div>
+    <!--div class="njc-detail-skill">
+      Bonus de lignée
+      <span class="njc-detail-skill-score"></span>
+    </div-->
+
+    <div class="njc-center">
+        <a class="njc-button njc-button-alert" ng-show="isAdditional" ng-click="deleteSkill(skill.key)">Supprimer la
+            compétence</a>
+    </div>
 
 </div>

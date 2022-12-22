@@ -1,0 +1,1 @@
+The files in this dir registers transformers, witch are used in templates.

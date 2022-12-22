@@ -1,16 +1,22 @@
+/**
+ * Create a transformer used in html templates.
+ * This transformer takes a list of skills and returns the same list without the skill that the current character has.
+ * @param {Object} input The list of skills to filter.
+ * @returns {String} The filtered list.
+ */
 NJCControllers.filter('missingSkill', function () {
 
-  return function (input, $scope) {
+    return function (input, $scope) {
 
-    var end = {};
-    for (var i in input) {
-      if (typeof ($scope.user.competences[input[i].key]) === 'undefined') {
-        end[input[i].key] = input[i];
-      }
-    }
+        var result = {};
+        for (var i in input) {
+            if (typeof ($scope.character.skills[input[i].key]) === 'undefined') {
+                result[input[i].key] = input[i];
+            }
+        }
 
-    return end;
+        return result;
 
-  };
+    };
 
 });

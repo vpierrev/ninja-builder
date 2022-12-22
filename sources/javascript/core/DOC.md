@@ -1,0 +1,1 @@
+This directory contains all the logic of the application, like the services.

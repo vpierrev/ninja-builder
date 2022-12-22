@@ -6,20 +6,24 @@
   background-color: #000000;
   line-height: 40px;
 }
+
 .njc-banner-legend {
   display: inline-block;
   width: 80px;
   padding: 0 0 0 17px;
   vertical-align: middle;
 }
+
 .njc-banner-edit {
   color: $lightColor;
   position: absolute;
   right: 15px;
 }
+
 .njc-banner-used-xp {
   color: $notificationColor;
 }
+
 .njc-banner-total-xp {
   color: $lightColor;
   background: rgba(255, 255, 255, 0.1);

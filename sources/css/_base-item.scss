@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .njc-base-item {
   background: $lightColor;
   border-bottom: 1px solid $thirdColor;
@@ -20,11 +21,13 @@
   }
 
 }
+
 .njc-base-item__fake {
   height: 0;
   border: 0;
   background: transparent;
 }
+
 .njc-base-item__total {
   box-sizing: border-box;
   color: $mainColor;
@@ -34,6 +37,7 @@
   position: absolute;
   right: 15px;
 }
+
 .njc-base-item__name {
   display: inline-block;
   font-weight: $normalWeight;
@@ -42,6 +46,7 @@
   left: 15px;
   right: 90px;
 }
+
 .njc-base-item__minus {
   position: absolute;
   top: 0;
@@ -52,6 +57,7 @@
   z-index: 2;
   cursor: pointer;
 }
+
 .njc-base-item__minus-icon {
   height: 11px;
   width: 11px;
@@ -61,6 +67,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .njc-base-item__score {
   z-index: 1;
   color: #7c7c7c;
@@ -72,6 +79,7 @@
   width: 45px;
   text-align: center;
 }
+
 .njc-base-item__plus {
   position: absolute;
   top: 0;
@@ -82,6 +90,7 @@
   z-index: 2;
   cursor: pointer;
 }
+
 .njc-base-item__plus-icon {
   height: 11px;
   width: 11px;

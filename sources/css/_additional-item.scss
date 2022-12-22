@@ -1,4 +1,4 @@
-.njc-skill-additionnal {
+.njc-skill-additional {
   z-index: 2;
   bottom: 60px;
   right: 10px;
@@ -30,7 +30,8 @@
     border: 1px solid $lightColor;
   }
 }
-.njc-skill-additionnal-title {
+
+.njc-skill-additional-title {
   font-size: $smallSize;
   padding: 10px 2px 3px;
   text-transform: uppercase;
@@ -38,7 +39,8 @@
   border-bottom: 1px solid $mainColor;
   font-weight: $boldWeight;
 }
-.njc-skill-additionnal-add {
+
+.njc-skill-additional-add {
   z-index: 2;
   position: fixed;
   bottom: 10px;
@@ -56,7 +58,8 @@
   vertical-align: middle;
   box-sizing: border-box;
 }
-.njc-skill-additionnal-add-icon {
+
+.njc-skill-additional-add-icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -65,7 +68,8 @@
   height: 14px;
   width: 14px;
 }
-.njc-skill-additionnal-item {
+
+.njc-skill-additional-item {
   cursor: pointer;
   line-height: 40px;
   border-top: 1px solid rgba(255, 255, 255, .1);

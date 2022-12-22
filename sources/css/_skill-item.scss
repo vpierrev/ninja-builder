@@ -4,6 +4,7 @@
   justify-content: center;
   margin-top: 30px;
 }
+
 .njc-skill-item {
   background: $lightColor;
   border-bottom: 1px solid $thirdColor;
@@ -25,11 +26,13 @@
   }
 
 }
+
 .njc-skill-item__fake {
   height: 0;
   border: 0;
   background: transparent;
 }
+
 .njc-skill-item__total {
   box-sizing: border-box;
   color: $mainColor;
@@ -39,6 +42,7 @@
   position: absolute;
   right: 15px;
 }
+
 .njc-skill-item__name {
   color: $darkColor;
   display: inline-block;
@@ -53,6 +57,7 @@
   }
 
 }
+
 .njc-skill-item__minus {
   position: absolute;
   top: 0;
@@ -63,6 +68,7 @@
   z-index: 2;
   cursor: pointer;
 }
+
 .njc-skill-item__minus-icon {
   height: 11px;
   width: 11px;
@@ -72,6 +78,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .njc-skill-item__score {
   z-index: 1;
   color: #7c7c7c;
@@ -83,6 +90,7 @@
   width: 45px;
   text-align: center;
 }
+
 .njc-skill-item__plus {
   position: absolute;
   top: 0;
@@ -93,6 +101,7 @@
   z-index: 2;
   cursor: pointer;
 }
+
 .njc-skill-item__plus-icon {
   height: 11px;
   width: 11px;

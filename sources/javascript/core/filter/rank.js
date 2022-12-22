@@ -1,51 +1,65 @@
-NJCControllers.filter('rank', ['sNinjaRank', function (sNinjaRank) {
+/**
+ * Create a transformer used in html templates.
+ * This transformer init the rank list then forward to #filter.
+ * @param {Object} character Forwards to #filter.
+ * @param {boolean} short Forwards to #filter.
+ * @returns {String} The name of the clan.
+ */
+NJCControllers.filter('rank', ['ninjaRankService', function (ninjaRankService) {
 
-  var data = null;
-  var serviceInvoked = false;
-  var filter = function (input, short) {
+    var ranks = null;
+    var serviceInvoked = false;
 
-    var rankName = data[input.rank].name;
+    /**
+     * Return the rank name of the character.
+     * @param {Object} character The character to get the rank name from.
+     * @param short If true, returns just the name of the rank; else, format it.
+     * @returns {*} The name of the rank.
+     */
+    var filter = function (character, short) {
 
-    if (short !== true) {
+        var rankName = ranks[character.rank].name;
 
-      rankName += ' de rang ';
+        if (short !== true) {
 
-      var rankLetter = 'D';
-      var xp = input.xp - getXp(input);
+            rankName += ' de rang ';
 
-      for (var i in data[input.rank].rank) {
-        if (xp > data[input.rank].rank[i]) {
-          rankLetter = i;
+            var rankLetter = 'D';
+            var xp = character.xp - getXp(character);
+
+            for (var i in ranks[character.rank].rank) {
+                if (xp > ranks[character.rank].rank[i]) {
+                    rankLetter = i;
+                }
+            }
+
+            rankName += rankLetter;
+
         }
-      }
 
-      rankName += rankLetter;
+        return rankName;
 
-    }
+    };
 
-    return rankName;
+    return function (input, short) {
 
-  };
+        if (ranks === null) {
 
-  return function (input, short) {
+            if (serviceInvoked === false) {
 
-    if (data === null) {
+                serviceInvoked = true;
+                ninjaRankService.load().then(function (result) {
+                    ranks = result;
+                });
 
-      if (serviceInvoked === false) {
+            }
 
-        serviceInvoked = true;
-        sNinjaRank.load().then(function (result) {
-          data = result;
-        });
+            return '';
 
-      }
+        } else {
+            return filter(input, short);
+        }
 
-      return '';
-
-    } else {
-      return filter(input, short);
-    }
-
-  };
+    };
 
 }]);

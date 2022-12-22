@@ -17,10 +17,12 @@
   &-light {
     border-color: $lightColor;
   }
+
   &-plain {
     background: $darkColor;
     border-color: $darkColor;
   }
+
   &-alert {
     background: $mainColor;
     border-color: $mainColor;

@@ -16,6 +16,7 @@ var map = require('map-stream');
 var minifycss = require('gulp-minify-css');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass')(require('sass'));
+var strip = require('gulp-strip-comments');
 var svgsprite = require('gulp-svg-sprite');
 var uglify = require('gulp-uglify');
 
@@ -108,27 +109,18 @@ gulp.task('javascript', function () {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-animate/angular-animate.js',
-      'sources/javascript/controllers.js',
-      'sources/javascript/core/util/**/*',
-      'sources/javascript/core/parameters/**/*',
-      'sources/javascript/core/run/**/*',
-      'sources/javascript/core/directive/**/*',
-      'sources/javascript/core/factory/**/*',
-      'sources/javascript/core/filter/**/*',
-      'sources/javascript/character/**/*',
-      'sources/javascript/skill/**/*'
+      'sources/javascript/**/*.js'
     ])
     .pipe(plumber({
       errorHandler: customErrorHandler
     }))
-    // .pipe(jshint('.jshintrc'))
     .pipe(concat('app.js'))
-    // .pipe(customJshintReporter(true))
     .pipe(gulpif(argv.env === 'prod', uglify({
       compress: {
         drop_debugger: false
       }
     })))
+    .pipe(strip())
     .pipe(gulp.dest(gulp.target + 'javascript/'));
 
 });

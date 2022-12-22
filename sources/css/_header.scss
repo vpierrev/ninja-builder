@@ -11,31 +11,37 @@
   top: 0;
   box-sizing: border-box;
 }
+
 .njc-header-back {
   color: $lightColor;
   display: inline-block;
   padding-right: 10px;
   text-decoration: none;
 }
+
 .njc-header-back-icon {
   height: 10px;
   width: 10px;
   fill: $lightColor;
 }
+
 .njc-header-back-text {
   line-height: 1em;
   vertical-align: middle;
 }
+
 .njc-header-misc {
   position: absolute;
   top: 0;
   right: 15px;
   font-size: $hugeSize;
 }
+
 .njc-header-xp {
   color: $notificationColor;
   font-weight: $lightWeight;
 }
+
 .njc-header-legend {
   color: $lightColor;
   font-weight: $mediumWeight;

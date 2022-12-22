@@ -16,6 +16,7 @@
     text-decoration: none;
     text-align: center;
   }
+
   label {
     display: block;
     text-transform: uppercase;
@@ -24,9 +25,11 @@
     color: $lightColor;
     font-weight: $normalWeight;
   }
+
   option {
     color: $darkColor;
   }
+
   select {
     color: transparent;
     background: transparent;
@@ -44,6 +47,7 @@
   }
 
 }
+
 .njc-form-item-select-faker {
   color: $darkColor;
   position: absolute;
@@ -58,6 +62,7 @@
   height: 90px;
   padding: 25px 0 0;
 }
+
 .njc-form-logo-icon {
   height: 48px;
   width: 48px;
