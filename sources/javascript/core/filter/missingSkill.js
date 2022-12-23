@@ -8,8 +8,8 @@ NJCControllers.filter('missingSkill', function () {
 
     return function (input, $scope) {
 
-        var result = {};
-        for (var i in input) {
+        const result = {};
+        for (const i in input) {
             if (typeof ($scope.character.skills[input[i].key]) === 'undefined') {
                 result[input[i].key] = input[i];
             }

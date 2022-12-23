@@ -1,30 +1,30 @@
-var argv = require('yargs').argv;
-var autoprefixer = require('gulp-autoprefixer');
-var changed = require('gulp-changed');
-var concat = require('gulp-concat');
-var exec = require('child_process').exec;
-var footer = require('gulp-footer');
-var fs = require('fs');
-var gulp = require('gulp');
-var gulpif = require('gulp-if');
-var gutil = require('gulp-util');
-var header = require('gulp-header');
-var imagemin = require('gulp-imagemin');
-var jshint = require('gulp-jshint');
-var manifest = require('gulp-manifest');
-var map = require('map-stream');
-var minifycss = require('gulp-minify-css');
-var plumber = require('gulp-plumber');
-var sass = require('gulp-sass')(require('sass'));
-var strip = require('gulp-strip-comments');
-var svgsprite = require('gulp-svg-sprite');
-var uglify = require('gulp-uglify');
+const argv = require('yargs').argv;
+const autoprefixer = require('gulp-autoprefixer');
+const changed = require('gulp-changed');
+const concat = require('gulp-concat');
+const exec = require('child_process').exec;
+const footer = require('gulp-footer');
+const fs = require('fs');
+const gulp = require('gulp');
+const gulpif = require('gulp-if');
+const gutil = require('gulp-util');
+const header = require('gulp-header');
+const imagemin = require('gulp-imagemin');
+const jshint = require('gulp-jshint');
+const manifest = require('gulp-manifest');
+const map = require('map-stream');
+const minifycss = require('gulp-minify-css');
+const plumber = require('gulp-plumber');
+const sass = require('gulp-sass')(require('sass'));
+const strip = require('gulp-strip-comments');
+const svgsprite = require('gulp-svg-sprite');
+const uglify = require('gulp-uglify');
 
-var node;
-var newProcess;
+let node;
+let newProcess;
 
 // Custom handler on a task fatal error
-var customErrorHandler = function (error) {
+const customErrorHandler = function (error) {
 
   gutil.log(gutil.colors.red("Fatal error on the task \"" + error.plugin + "\"!!"));
   gutil.log(gutil.colors.red(error.message));
@@ -33,7 +33,7 @@ var customErrorHandler = function (error) {
 };
 
 // Report the JSHint error a specific way
-var customJshintReporter = function (notice) {
+const customJshintReporter = function (notice) {
 
   return map(function (file, callback) {
 
@@ -275,7 +275,7 @@ gulp.task('watch', ['install'], function () {
 
 });
 
-gulp.task('server', function (cb) {
+gulp.task('server', function () {
 
   newProcess = exec('node main.js');
   newProcess.stdout.pipe(process.stdout);
