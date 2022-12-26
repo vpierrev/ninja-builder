@@ -3,7 +3,7 @@
 ## Installation
 
 1. Installer nodejs, disponible [ici](https://nodejs.org/en/download/).
-2. Installer fit
+2. Installer git (https://git-scm.com/downloads).
 3. Redémarrer l'ordinateur.
 4. Installer bower (`npm install -g bower`).
 2. Cloner le projet (`git clone https://github.com/vpierrev/ninja-builder.git`)
