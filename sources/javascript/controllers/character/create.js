@@ -1,6 +1,6 @@
 NJCControllers.controller('CharacterCreate', [
-    '$routeParams', '$rootScope', '$scope', '$location', '$window', 'ninjaClanService', 'ninjaRankService', 'characterService',
-    function ($routeParams, $rootScope, $scope, $location, $window, ninjaClanService, ninjaRankService, characterService) {
+    '$routeParams', '$rootScope', '$scope', '$location', '$window', 'ninjaClanService', 'ninjaRankService', 'characterService', 'ligneeService',
+    function ($routeParams, $rootScope, $scope, $location, $window, ninjaClanService, ninjaRankService, characterService, ligneeService) {
 
         $scope.character = characterService.get();
         $scope.changeName = characterService.setName;
@@ -13,6 +13,11 @@ NJCControllers.controller('CharacterCreate', [
             characterService.setClan(clan).then(function (character) {
                 $scope.character = character;
             });
+        };
+        $scope.updateLignee = function (lignee) {
+
+            characterService.get().lignee = lignee;
+            $scope.character = characterService.get();
         };
         $scope.updateName = function (name) {
 
@@ -37,6 +42,10 @@ NJCControllers.controller('CharacterCreate', [
 
         ninjaRankService.load().then(function (data) {
             $scope.ninjaRanks = data;
+        });
+
+        ligneeService.load().then(function (data) {
+            $scope.lignees = data;
         });
 
         ninjaClanService.load().then(function (data) {

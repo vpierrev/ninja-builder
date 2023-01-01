@@ -18,6 +18,14 @@
 </div>
 
 <div class="njc-form-item">
+    <div class="njc-form-item-select-faker">{{lignees[character.lignee].name}}</div>
+    <select class="form-select" name="ninja-lignee" ng-model="character.lignee" ng-change="updateLignee(character.lignee)">
+        <option ng-repeat="lignee in lignees" value="{{lignee.key}}">{{lignee.name}}</option>
+    </select>
+    <label>Lignée du ninja</label>
+</div>
+
+<div class="njc-form-item">
     <div class="njc-form-item-select-faker">{{ninjaRanks[character.rank].name}}</div>
     <select class="form-select" name="ninja-rank" ng-model="character.rank" ng-change="updateRank(character.rank)">
         <option ng-repeat="rank in ninjaRanks" value="{{rank.key}}">{{rank.name}}</option>

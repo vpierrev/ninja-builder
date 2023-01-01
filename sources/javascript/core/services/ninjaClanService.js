@@ -24,6 +24,14 @@ NJCApp.factory('ninjaClanService', ['$q', '$http', function ($q, $http) {
 
             return defer.promise;
 
+        },
+
+        getLignee: function (clan) {
+
+            return this.load().then(function (data) {
+
+                return data[clan.key].lignee;
+            });
         }
 
     };

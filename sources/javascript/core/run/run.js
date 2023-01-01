@@ -12,7 +12,7 @@ NJCApp.run(['characterService', function (characterService) {
         });
     }
 
-    var currentCharacter = localStorage.getItem('currentCharacter');
-    characterService.setCurrent(currentCharacter);
+    const currentCharacterId = localStorage.getItem('currentCharacter');
+    characterService.setCurrent(currentCharacterId);
 
 }]);

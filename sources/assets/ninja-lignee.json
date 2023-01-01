@@ -1,0 +1,39 @@
+{
+  "clan": {
+    "key": "clan",
+    "name": "Clan",
+    "description": "Suivre le clan"
+  },
+  "ninpo": {
+    "key": "ninpo",
+    "name": "Ninpō",
+    "description": "Voie du Ninjustu",
+    "lignee": {
+
+    }
+  },
+  "kriegstier": {
+    "key": "kriegstier",
+    "name": "Kriegstier",
+    "description": "Voie des Armes",
+    "lignee": {
+
+    }
+  },
+  "shokan-shi": {
+    "key": "shokan-shi",
+    "name": "Shōkan-shi",
+    "description": "Voie du Genjutsu",
+    "lignee": {
+
+    }
+  },
+  "hachimon": {
+    "key": "hachimon",
+    "name": "Hachimon",
+    "description": "Voie du Taijutsu",
+    "lignee": {
+
+    }
+  }
+}

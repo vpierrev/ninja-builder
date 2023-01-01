@@ -1,0 +1,192 @@
+{
+  "acere": {
+    "name": "Acéré",
+    "max": 5,
+    "bonus": [
+      {
+        "on": {
+          "type": "damage",
+          "target": "arm"
+        },
+        "value": {
+          "type": "level",
+          "value": 2
+        }
+      }
+    ]
+  },
+  "colossal": {
+    "name": "Colossal",
+    "max": 9,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "chakra"
+        },
+        "value": {
+          "type": "level",
+          "value": 100
+        }
+      }
+    ]
+  },
+  "endurci": {
+    "name": "Endurci",
+    "max": 5,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "vigor"
+        },
+        "value": {
+          "type": "level",
+          "value": 1
+        }
+      },
+      {
+        "on": {
+          "type": "stat",
+          "target": "chakra"
+        },
+        "value": {
+          "type": "level",
+          "value": 50
+        }
+      }
+    ]
+  },
+  "explosif": {
+    "name": "Explosif",
+    "max": 5,
+    "bonus": [
+      {
+        "on": {
+          "type": "damage",
+          "target": "tai"
+        },
+        "value": {
+          "type": "level",
+          "value": 2
+        }
+      }
+    ]
+  },
+  "fulgurant": {
+    "name": "Fulgurant",
+    "max": 5,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "initiative"
+        },
+        "value": {
+          "type": "level",
+          "value": 2
+        }
+      },
+      {
+        "on": {
+          "type": "stat",
+          "target": "simpleMove"
+        },
+        "value": {
+          "type": "level",
+          "value": 10
+        }
+      }
+    ]
+  },
+  "hereditaire": {
+    "name": "Héréditaire",
+    "max": 3,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "lignPowerMaxUses"
+        },
+        "value": {
+          "type": "level",
+          "value": 1
+        }
+      }
+    ]
+  },
+  "imperieux": {
+    "name": "Impérieux",
+    "max": 5,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "character"
+        },
+        "value": {
+          "type": "level",
+          "value": 1
+        }
+      },
+      {
+        "on": {
+          "type": "stat",
+          "target": "chakra"
+        },
+        "value": {
+          "type": "level",
+          "value": 50
+        }
+      }
+    ]
+  },
+  "inepuisable": {
+    "name": "Inépuisable",
+    "max": 3,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "chakraRegen"
+        },
+        "value": {
+          "type": "level",
+          "value": 1
+        }
+      }
+    ]
+  },
+  "puissant": {
+    "name": "Puissant",
+    "max": 1,
+    "bonus": [
+      {
+        "on": {
+          "type": "info",
+          "target": "blessure"
+        },
+        "value": {
+          "type": "text",
+          "value": "Paliers de réserve naturelle de chakra et échecs automatiques liés aux Blessures annulés."
+        }
+      }
+    ]
+  },
+  "remanent": {
+    "name": "Rémanent",
+    "max": 1,
+    "bonus": [
+      {
+        "on": {
+          "type": "info",
+          "target": "chakra"
+        },
+        "value": {
+          "type": "text",
+          "value": "Le chakra appliqué en petite quantité sur un objet ne disparaît pas et reste actif tant qu’un personnage le souhaite."
+        }
+      }
+    ]
+  }
+}

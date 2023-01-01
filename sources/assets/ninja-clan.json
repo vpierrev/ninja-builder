@@ -2,29 +2,25 @@
   "aburame": {
     "key": "aburame",
     "name": "Aburame",
-    "lignee": {}
+    "lignee": {
+    }
   },
   "akaba": {
     "key": "akaba",
     "name": "Akaba",
     "lignee": {
-      "4": "parade",
-      "8": "loisettraditions"
     }
   },
   "akimichi": {
     "key": "akimichi",
     "name": "Akimichi",
     "lignee": {
-      "4": "loisettraditions"
     }
   },
   "aniki": {
     "key": "aniki",
     "name": "Aniki",
     "lignee": {
-      "4": "collecterdesinformations",
-      "8": "camouflage"
     }
   },
   "ao": {
@@ -41,149 +37,174 @@
     "key": "hyuga",
     "name": "Hyūga",
     "lignee": {
-      "2": "corpsacorps",
-      "6": "esquive"
     }
   },
   "inuzuka": {
     "key": "inuzuka",
     "name": "Inuzuka",
     "lignee": {
-      "2": "survie",
-      "6": "vigilance"
     }
   },
   "ishida": {
     "key": "ishida",
     "name": "Ishida",
     "lignee": {
-      "4": "mental",
-      "8": "education"
     }
   },
   "kagayaki": {
     "key": "kagayaki",
     "name": "Kagayaki",
     "lignee": {
-      "2": "medecine",
-      "6": "sixiemesens"
     }
   },
   "kato": {
     "key": "kato",
     "name": "Katō",
     "lignee": {
-      "4": "camouflage",
-      "8": "esquive"
     }
   },
   "kenta": {
     "key": "kenta",
     "name": "Kenta",
     "lignee": {
-      "2": "physique",
-      "8": "fauxsemblants"
+      "1": [
+        {
+          "on": {
+            "type": "stat",
+            "target": "blessure"
+          },
+          "value": {
+            "type": "simple",
+            "value": 1
+          }
+        }
+      ],
+      "2": [
+        {
+          "on": {
+            "type": "stat",
+            "target": "physique"
+          },
+          "value": {
+            "type": "level",
+            "value": 1
+          }
+        }
+      ],
+      "4": [
+        {
+          "on": {
+            "type": "stat",
+            "target": "vigor"
+          },
+          "value": {
+            "type": "simple",
+            "value": 4
+          }
+        }
+      ],
+      "6": [
+        {
+          "on": {
+            "type": "stat",
+            "target": "blessure"
+          },
+          "value": {
+            "type": "simple",
+            "value": 1
+          }
+        }
+      ],
+      "8": [
+        {
+          "on": {
+            "type": "stat",
+            "target": "contrefacon"
+          },
+          "value": {
+            "type": "level",
+            "value": 1
+          }
+        }
+      ]
     }
   },
   "kurama": {
     "key": "kurama",
     "name": "Kurama",
     "lignee": {
-      "2": "gensou",
-      "6": "sixiemesens"
     }
   },
   "mitokado": {
     "key": "mitokado",
     "name": "Mitokado",
     "lignee": {
-      "2": "vigilance",
-      "6": "sentinelle"
     }
   },
   "morino": {
     "key": "morino",
     "name": "Morino",
     "lignee": {
-      "2": "initimidation",
-      "6": "loisettraditions"
     }
   },
   "munefuda": {
     "key": "munefuda",
     "name": "Munefuda",
     "lignee": {
-      "6": "parade"
     }
   },
   "nara": {
     "key": "nara",
     "name": "Nara",
     "lignee": {
-      "4": "education",
-      "8": "mental"
     }
   },
   "sarutobi": {
     "key": "sarutobi",
     "name": "Sarutobi",
     "lignee": {
-      "2": "sciencedesexplosifs",
-      "6": "parade"
     }
   },
   "senju": {
     "key": "senju",
     "name": "Senju",
     "lignee": {
-      "4": "intimidation"
     }
   },
   "shimadoku": {
     "key": "shimadoku",
     "name": "Shimadoku",
     "lignee": {
-      "2": "sciencedespoisons",
-      "6": "survie"
     }
   },
   "shimura": {
     "key": "shimura",
     "name": "Shimura",
     "lignee": {
-      "4": "collecterdesinformations"
     }
   },
   "takeda": {
     "key": "takeda",
     "name": "Takeda",
     "lignee": {
-      "2": "sixiemesens",
-      "6": "armesexotiques"
     }
   },
   "uchiha": {
     "key": "uchiha",
     "name": "Uchiha",
     "lignee": {
-      "4": "esquive",
-      "6": "physique"
     }
   },
   "utatane": {
     "key": "utatane",
     "name": "Utatane",
     "lignee": {
-      "2": "technologie",
-      "6": "kawarimi"
     }
   },
   "yamanaka": {
     "key": "yamanaka",
     "name": "Yamanaka",
     "lignee": {
-      "2": "vigilance",
-      "6": "sentinelle"
     }
   }
 }

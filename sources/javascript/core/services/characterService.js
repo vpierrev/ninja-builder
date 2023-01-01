@@ -1,10 +1,52 @@
 NJCApp.factory('characterService', [
-    '$q', 'skillBasesService', 'skillCommonService', 'additionalSkillsService', 'ninjaRankService', 'ninjaClanService',
-    function ($q, skillBasesService, skillCommonService, additionalSkillsService, ninjaRankService, ninjaClanService) {
+    '$q', 'skillBasesService', 'skillCommonService', 'additionalSkillsService', 'ninjaRankService', 'ninjaClanService', 'chakraSpeService', 'ligneeService',
+    function ($q, skillBasesService, skillCommonService, additionalSkillsService, ninjaRankService, ninjaClanService, chakraSpeService, ligneeService) {
 
         return {
 
             currentCharacter: null,
+
+            currentCharacterBonuses: new Map(),
+
+            defaultCharacter: {
+                "bases": {"cor":1,"esp":1,"arm":1,"tai":1,"nin":1,"gen":1,"lign":1},
+                "skills": {},
+                "clan": {
+                    "key": "aburame",
+                    "name": "Aburame",
+                    "lignee": {}
+                },
+                "lignee": "clan",
+                "chakraSpes": [],
+                "rank": "genin",
+                "additionalSkillsCount": 0,
+                "xp": 10,
+                "name": "",
+                "nindoText": "",
+                "nindoPoints": 2
+            },
+
+            initBonuses: function () {
+
+                $q.all([chakraSpeService.load(), additionalSkillsService.load(), skillCommonService.load(), ligneeService.load()]).then(() => {
+
+                    this.currentCharacterBonuses = new Map();
+                    chakraSpeService.setBonuses(this.currentCharacterBonuses, this.currentCharacter.chakraSpes);
+                    additionalSkillsService.setBonuses(this.currentCharacterBonuses, this.currentCharacter.skills);
+                    skillCommonService.setBonuses(this.currentCharacterBonuses, this.currentCharacter.skills);
+                    ligneeService.setBonuses(this.currentCharacterBonuses, this.currentCharacter);
+                });
+
+            },
+
+            getBonus: function (bonus) {
+
+                if (this.currentCharacterBonuses.has(JSON.stringify(bonus))) {
+                    return this.currentCharacterBonuses.get(JSON.stringify(bonus));
+                }
+
+                return 0;
+            },
 
             /**
              * Get the highest base of the character
@@ -13,9 +55,9 @@ NJCApp.factory('characterService', [
              */
             _getMaxBase: function () {
 
-                var max = 1;
-                for (var base in this.currentCharacter.bases) {
-                    max = Math.max(max, this.currentCharacter.bases[base]);
+                let max = 1;
+                for (const base in this.currentCharacter.bases) {
+                    max = Math.max(max, this.getBase(base));
                 }
 
                 return max;
@@ -28,8 +70,8 @@ NJCApp.factory('characterService', [
              */
             _getMaxSkillCount: function () {
 
-                var max = 5;
-                var maxBase = this._getMaxBase();
+                let max = 5;
+                const maxBase = this._getMaxBase();
 
                 switch (true) {
                     case maxBase >= 10:
@@ -66,7 +108,7 @@ NJCApp.factory('characterService', [
              */
             checkIntegrity: function (character) {
 
-                var defer = $q.defer();
+                const defer = $q.defer();
 
                 $q.all([
                     skillCommonService.load(),
@@ -77,7 +119,7 @@ NJCApp.factory('characterService', [
                     // Set an explicit clan for the ninja, not just the key
                     character.clan = args[2][character.clan.key || character.clan];
 
-                    var i;
+                    let i;
                     // Integrity of the skills: checking missing skills
                     for (i in args[0]) {
                         if (character.skills.hasOwnProperty(i) === false) {
@@ -91,7 +133,7 @@ NJCApp.factory('characterService', [
                         }
                     }
                     // Integrity of the skills: sort based on the conf files
-                    var tempSkills = {};
+                    const tempSkills = {};
                     for (i in args[0]) {
                         tempSkills[i] = character.skills[i];
                     }
@@ -126,11 +168,11 @@ NJCApp.factory('characterService', [
              */
             getAll: function () {
 
-                var ninjas = {};
-                var promises = [];
+                const ninjas = {};
+                const promises = [];
 
-                for (var i = 0; i < localStorage.length; i++) {
-                    var key = localStorage.key(i);
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
                     if (key.indexOf('ninja_') === 0) {
                         ninjas[key] = JSON.parse(localStorage.getItem(key));
                         promises.push(this.checkIntegrity(ninjas[key]));
@@ -140,7 +182,6 @@ NJCApp.factory('characterService', [
                 return $q.all(promises).then(function () {
                     return ninjas;
                 });
-
             },
 
             /**
@@ -151,18 +192,18 @@ NJCApp.factory('characterService', [
              */
             getSkillValues: function (selectedSkill) {
 
-                var base = this.currentCharacter.bases[selectedSkill.base.toLowerCase()];
-                var skill = this.currentCharacter.skills[selectedSkill.key];
-                var clan = 0;
-                for (var level in this.currentCharacter.clan.lignee) {
+                const base = this.getBase(selectedSkill.base.toLowerCase());
+                const skill = this.currentCharacter.skills[selectedSkill.key];
+                let clan = 0;
+                for (const level in this.currentCharacter.clan.lignee) {
 
-                    if (this.currentCharacter.clan.lignee[level] === selectedSkill.key && this.currentCharacter.bases.lign >= level) {
-                        clan += Math.ceil(this.currentCharacter.bases.lign / 2);
+                    if (this.currentCharacter.clan.lignee[level] === selectedSkill.key && this.getBase('lign') >= level) {
+                        clan += Math.ceil(this.getBase('lign') / 2);
                     }
 
                 }
 
-                var total = base + skill + clan;
+                const total = base + skill + clan;
 
                 return {
                     "base": base,
@@ -174,16 +215,269 @@ NJCApp.factory('characterService', [
             },
 
             /**
+             * Get the vigor of the character
+             * @param {Boolean} includeBonus If false, the bonus will not be included
+             * @param {String} specific If set, the vigor will be calculated for the given specific resistance
+             * @returns {number} The vigor
+             */
+            getVigor: function (includeBonus = true, specific) {
+
+                return 2 + this.getBase('cor') + (includeBonus ? this.getBonus({"type": "stat", "target": "vigor"}) : 0) + this.getBonus({"type": "stat", "target": ("res" + specific)}); //TODO: add the clan bonus (and armor bonus ?)
+            },
+
+            /**
+             * Get the character of the character
+             * @param {Boolean} includeBonus If false, the bonus will not be included
+             * @param {String} specific If set, the vigor will be calculated for the given specific resistance
+             * @returns {*}
+             */
+            getCharacter: function (includeBonus = true, specific) {
+
+                return 2 + this.getBase('esp') + (includeBonus ? this.getBonus({"type": "stat", "target": "character"}) : 0) + this.getBonus({"type": "stat", "target": "res" + specific}); //TODO: add the clan bonus (and armor bonus ?)
+            },
+
+            getInitiative: function (asFormula = false, includeBonus = true) {
+
+                return skillCommonService.load().then((data) =>{
+                    const elements = [this.getSkillValues(data['physique']).total];
+                    if (includeBonus) {
+                        elements.push(this.getBonus({"type": "stat", "target": "initiative"}));
+                    }
+
+                    if (asFormula) {
+
+                        return "1d10 + " + elements.join(' + ');
+                    } else {
+                        return "1d10 + " + elements.reduce(function (a, b) {
+                            return a + b;
+                        });
+                    }
+                });
+            },
+
+            /**
+             * Get the specified base of the character
+             * @param {String} base The base to get
+             * @param {boolean} [includeBonus] If false, the bonus will not be added to the base
+             * @returns {number} The base value
+             */
+            getBase: function (base, includeBonus = false) {
+
+                return this.currentCharacter.bases[base] + (includeBonus ? this.getBonus({"type": "stat", "target": base}) : 0);
+            },
+
+            /**
+             * Get the chakra of the character
+             * @returns {number} The chakra amount
+             */
+            getChakraTotal: function () {
+
+                return 50 + (30 * this.getBase('cor')) + (30 * this.getBase('esp')) + this.getBonus({"type": "stat", "target": "chakra"}); //TODO: add the clan bonus
+            },
+
+            /**
+             * Get the chakra regeneration percentage of the character
+             * @returns {number} The chakra regeneration percentage
+             */
+            getChakraRegenPercent: function () {
+
+                return 1 + this.getBonus({"type": "stat", "target": "chakraRegen"}); //TODO: add the clan bonus
+            },
+
+            /**
+             * Get the chakra regeneration of the character
+             * @returns {number} The chakra regeneration
+             */
+            getChakraRegen: function () {
+
+                return Math.floor(this.getChakraTotal() * this.getChakraRegenPercent() / 100);
+            },
+
+            /**
+             * Get the amount of chakra control points of the character
+             * @returns {number} The amount of chakra control points
+             */
+            getChakraControl: function () {
+
+                return this.getBase('cor') + this.getBase('esp');
+            },
+
+            /**
+             * Get the amount of interceptions playable by the character
+             * @returns {{max: number, arm: number, tai: number}} The amount of interceptions playable by the character, by type
+             */
+            getInterceptions: function () {
+
+                let arm = 0;
+                let tai = 0;
+
+                let value = this.getBase('arm');
+                switch (true) {
+                    case value >= 10:
+                        arm++;
+                    /*falls through*/
+                    case value >= 9:
+                        arm++;
+                    /*falls through*/
+                    case value >= 7:
+                        arm++;
+                    /*falls through*/
+                    case value >= 4:
+                        arm++;
+                    /*falls through*/
+                    default:
+                        arm++;
+                        break;
+                }
+
+                value = this.getBase('tai');
+                switch (true) {
+                    case value >= 10:
+                        tai++;
+                    /*falls through*/
+                    case value >= 9:
+                        tai++;
+                    /*falls through*/
+                    case value >= 7:
+                        tai++;
+                    /*falls through*/
+                    case value >= 4:
+                        tai++;
+                    /*falls through*/
+                    default:
+                        tai++;
+                        break;
+                }
+
+                let max = Math.max(arm, tai);
+                return {
+                    "arm": arm,
+                    "tai": tai,
+                    "max": max
+                }
+            },
+
+            /**
+             * Get the max amount of chakra spes of the character
+             * @returns {number} The max amount of chakra spes
+             */
+            getMaxChakraSpes: function () {
+
+                let max = 0;
+                let chakraControl = this.getChakraControl();
+                switch (true) {
+                    case chakraControl >= 24:
+                        max += 5;
+                    /*falls through*/
+                    case chakraControl >= 20:
+                        max += 3;
+                    /*falls through*/
+                    case chakraControl >= 14:
+                        max += 2;
+                    /*falls through*/
+                    case chakraControl >= 10:
+                        max += 2;
+                    /*falls through*/
+                    case chakraControl >= 5:
+                        max += 1;
+                    /*falls through*/
+                    case chakraControl >= 2:
+                        max += 1;
+
+                }
+
+                return max;
+            },
+
+            /**
+             * Add a chakra spe <amount> time to the character
+             * @param chakraSpe The chakra spe to add
+             * @param amount The amount to add
+             */
+            addChakraSpe: function (chakraSpe, amount) {
+
+                amount = !!amount ? amount : 1;
+
+                chakraSpeService.load().then((chakraSpeList) => {
+
+                    if (!chakraSpeList.hasOwnProperty(chakraSpe)) {
+                        return;
+                    }
+
+                    if (this.getMaxChakraSpes() < this.currentCharacter.chakraSpes.length + amount) {
+                        return;
+                    }
+
+                    if (this.getChakraSpeAmount(chakraSpe) + amount > chakraSpeList[chakraSpe].max) {
+                        return;
+                    }
+
+                    for (let i = 0; i < amount; i++) {
+                        this.currentCharacter.chakraSpes.push(chakraSpe);
+                    }
+
+                    this.initBonuses();
+                    this.save();
+                });
+            },
+
+            /**
+             * Remove a chakra spe one time or completely from the character
+             * @param chakraSpe The chakra spe to remove
+             * @param all If true, remove all occurrences the chakra spe, else remove only one occurrence
+             */
+            removeChakraSpe: function (chakraSpe, all) {
+
+                if (all) {
+                    this.currentCharacter.chakraSpes = this.currentCharacter.chakraSpes.filter(function (item) {
+                        return item !== chakraSpe;
+                    });
+                } else {
+                    this.currentCharacter.chakraSpes.splice(this.currentCharacter.chakraSpes.indexOf(chakraSpe), 1);
+                }
+
+                this.initBonuses();
+                this.save();
+            },
+
+            /**
+             * Get the amount of a chakra spe of the character
+             * @param chakraSpeKey The chakra spe key
+             * @returns {number} The amount of this chakra spe
+             */
+            getChakraSpeAmount: function (chakraSpeKey) {
+
+                let amount = 0;
+
+                for (let chakraSpe of this.currentCharacter.chakraSpes) {
+                    if (chakraSpe === chakraSpeKey) {
+                        amount++;
+                    }
+                }
+
+                return amount;
+            },
+
+            /**
+             * Get the list of the chakra specializations of the character
+             * @returns {Object} The list of the chakra specializations of the character
+             */
+            getChakraSpes: function () {
+
+                return this.currentCharacter.chakraSpes;
+            },
+
+            /**
              * Return a promise how throws an error if the character has no remaining skill slot
              * @returns {Promise} The promise
              */
             hasSkillSlot: function () {
 
-                var defer = $q.defer();
+                const defer = $q.defer();
 
-                ninjaRankService.load().then(function (data) {
+                ninjaRankService.load().then(function () {
 
-                    var targetCount = this._getMaxSkillCount();
+                    const targetCount = this._getMaxSkillCount();
 
                     /*
                     Je n'ai pas compris pourquoi ce code était là, je l'ai commenté pour être sûr
@@ -214,6 +508,10 @@ NJCApp.factory('characterService', [
                 return ninjaClanService.load().then(function (key, clans) {
 
                     this.currentCharacter.clan = clans[key];
+
+                    this.initBonuses();
+                    this.save();
+
                     return this.currentCharacter;
                 }.bind(this, key));
 
@@ -229,13 +527,13 @@ NJCApp.factory('characterService', [
 
                 add = typeof (add) === 'undefined' ? 1 : add;
 
-                var defer = $q.defer();
+                const defer = $q.defer();
 
                 ninjaRankService.load().then(function (data) {
 
-                    var oldMaxSkillCount = this._getMaxSkillCount();
+                    const oldMaxSkillCount = this._getMaxSkillCount();
 
-                    var finalValue = this.currentCharacter.bases[base] + add;
+                    let finalValue = this.getBase(base, false) + add;
                     if (finalValue > data[this.currentCharacter.rank].baseMax) {
                         finalValue = data[this.currentCharacter.rank].baseMax;
                     } else if (finalValue <= 0) {
@@ -243,16 +541,19 @@ NJCApp.factory('characterService', [
                     }
 
                     this.currentCharacter.bases[base] = finalValue;
-                    var newMaxSkillCount = this._getMaxSkillCount();
+                    const newMaxSkillCount = this._getMaxSkillCount();
 
-                    if ((oldMaxSkillCount !== newMaxSkillCount) && (newMaxSkillCount < this.currentCharacter.additionalSkillsCount)) {
+                    if (((oldMaxSkillCount !== newMaxSkillCount) && (newMaxSkillCount < this.currentCharacter.additionalSkillsCount))
+                        || (this.currentCharacter.chakraSpes.length > this.getMaxChakraSpes())) {
                         this.currentCharacter.bases[base] -= add;
                         return;
                     }
 
-                    for (var skill in this.currentCharacter.skills) {
+                    for (const skill in this.currentCharacter.skills) {
                         this.addToSkill(skill, 0);
                     }
+
+                    this.initBonuses();
 
                     this.save();
                     defer.resolve();
@@ -291,16 +592,16 @@ NJCApp.factory('characterService', [
 
                 add = typeof (add) === 'undefined' ? 1 : add;
 
-                var defer = $q.defer();
+                const defer = $q.defer();
 
                 $q.all([
                     skillCommonService.load(),
                     additionalSkillsService.load()
                 ]).then(function (args) {
 
-                    var base = (args[0][skill] || args[1][skill]).base.toLowerCase();
-                    var baseValue = this.currentCharacter.bases[base];
-                    var finalValue = this.currentCharacter.skills[skill] + add;
+                    const base = (args[0][skill] || args[1][skill]).base.toLowerCase();
+                    const baseValue = this.getBase(base);
+                    let finalValue = this.currentCharacter.skills[skill] + add;
 
                     if (finalValue > baseValue + 2) {
                         finalValue = baseValue + 2;
@@ -309,6 +610,8 @@ NJCApp.factory('characterService', [
                     }
 
                     this.currentCharacter.skills[skill] = finalValue;
+
+                    this.initBonuses();
 
                     this.save();
                     defer.resolve();
@@ -327,7 +630,7 @@ NJCApp.factory('characterService', [
 
                 forward = forward || false;
 
-                var current = localStorage.getItem('currentCharacter');
+                const current = localStorage.getItem('currentCharacter');
                 localStorage.removeItem(current);
                 localStorage.removeItem('currentCharacter');
 
@@ -337,9 +640,9 @@ NJCApp.factory('characterService', [
             },
 
             /**
-             *
-             * @param key
-             * @param forward
+             * Remove the given skill from the character
+             * @param key The key of the skill to remove
+             * @param forward If true, user will be redirected to the character edition page
              */
             removeSkill: function (key, forward) {
 
@@ -348,12 +651,13 @@ NJCApp.factory('characterService', [
                 delete this.currentCharacter.skills[key];
                 this.currentCharacter.additionalSkillsCount--;
 
+                this.initBonuses();
+
                 this.save();
 
                 if (forward === true) {
                     location.hash = '#/character/edit/';
                 }
-
             },
 
             /**
@@ -362,22 +666,11 @@ NJCApp.factory('characterService', [
             reset: function () {
 
                 localStorage.removeItem('currentCharacter');
-                var currentCharacter = {
-                    "bases": {},
-                    "skills": {},
-                    "clan": {
-                        "key": "aburame",
-                        "name": "Aburame",
-                        "lignee": {}
-                    },
-                    "rank": "genin",
-                    "additionalSkillsCount": 0,
-                    "xp": 10
-                };
+                const currentCharacter = structuredClone(this.defaultCharacter);
 
                 skillBasesService.load().then(function (data) {
 
-                    for (var i in data) {
+                    for (const i in data) {
                         currentCharacter.bases[i] = 1;
                     }
 
@@ -385,18 +678,20 @@ NJCApp.factory('characterService', [
 
                 skillCommonService.load().then(function (data) {
 
-                    for (var i in data) {
+                    for (const i in data) {
                         currentCharacter.skills[i] = 1;
                     }
 
                 });
 
                 this.currentCharacter = currentCharacter;
+
+                this.initBonuses();
             },
 
             /**
              * Set the current character to the passed one. Use the default character if the passed one is undefined.
-             * @param {Object} who The character to set
+             * @param {String} who The key of the character to set
              * @param {Boolean} forward If true, the character will be redirected to the character edit page.
              * @returns {Promise} A promise
              */
@@ -404,27 +699,21 @@ NJCApp.factory('characterService', [
 
                 if (!who) {
 
-                    this.currentCharacter = {
-                        "bases": {},
-                        "skills": {},
-                        "clan": {
-                            "key": "aburame",
-                            "name": "Aburame",
-                            "lignee": {}
-                        },
-                        "rank": "genin",
-                        "additionalSkillsCount": 0,
-                        "xp": 10
-                    };
+                    this.currentCharacter = structuredClone(this.defaultCharacter);
+
+                    this.initBonuses();
 
                     return $q.when([]);
-
                 }
 
                 localStorage.setItem('currentCharacter', who);
 
                 this.currentCharacter = JSON.parse(localStorage.getItem(who));
-                var promise = this.checkIntegrity(this.currentCharacter);
+
+                const promise = this.checkIntegrity(this.currentCharacter).then(() => {
+
+                    this.initBonuses();
+                });
 
                 forward = forward || false;
                 if (forward === true) {
@@ -440,14 +729,14 @@ NJCApp.factory('characterService', [
              */
             save: function () {
 
-                var currentCharacter = localStorage.getItem('currentCharacter');
+                let currentCharacter = localStorage.getItem('currentCharacter');
 
                 if (currentCharacter) {
                     localStorage.setItem(currentCharacter, JSON.stringify(this.currentCharacter));
                 } else {
 
-                    var prefix = 'ninja_';
-                    var i = 0;
+                    const prefix = 'ninja_';
+                    let i = 0;
                     while (localStorage.hasOwnProperty(prefix + i) === true) {
                         i++;
                     }
@@ -456,7 +745,7 @@ NJCApp.factory('characterService', [
                     if (currentCharacter && this.currentCharacter.name) {
 
                         localStorage.setItem(currentCharacter, JSON.stringify(this.currentCharacter));
-                        localStorage.setItem('currentCharacter', this.currentCharacter);
+                        localStorage.setItem('currentCharacter', currentCharacter);
 
                     }
 

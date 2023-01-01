@@ -3,13 +3,37 @@
     "key": "resistancesphy",
     "name": "Résistances PHY",
     "base": "COR",
-    "lignee": false
+    "lignee": false,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "resphy"
+        },
+        "value": {
+          "type": "level",
+          "value": 0.5
+        }
+      }
+    ]
   },
   "resistancesenvi": {
     "key": "resistancesenvi",
     "name": "Résistances ENVI",
     "base": "COR",
-    "lignee": false
+    "lignee": false,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "resenv"
+        },
+        "value": {
+          "type": "level",
+          "value": 0.5
+        }
+      }
+    ]
   },
   "regeneration": {
     "key": "regeneration",
@@ -33,7 +57,19 @@
     "key": "resistancespsy",
     "name": "Résistances PSY",
     "base": "ESP",
-    "lignee": false
+    "lignee": false,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "respsy"
+        },
+        "value": {
+          "type": "level",
+          "value": 0.5
+        }
+      }
+    ]
   },
   "medecine": {
     "key": "medecine",
@@ -123,7 +159,19 @@
     "key": "resistanceselem",
     "name": "Résistances ELEM",
     "base": "NIN",
-    "lignee": false
+    "lignee": false,
+    "bonus": [
+      {
+        "on": {
+          "type": "stat",
+          "target": "reselem"
+        },
+        "value": {
+          "type": "level",
+          "value": 0.5
+        }
+      }
+    ]
   },
   "katon": {
     "key": "katon",
