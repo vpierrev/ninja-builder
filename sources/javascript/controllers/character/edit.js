@@ -19,6 +19,12 @@ NJCControllers.controller('CharacterEdit', [
         $scope.addSkillList = false;
         $scope.addSkillButton = false;
 
+        $scope.setMaxXp = function () {
+
+            characterService.get().xp = $scope.character.xp;
+            characterService.save();
+        };
+
         $scope.deleteCurrent = function () {
 
             characterService.remove(true);
