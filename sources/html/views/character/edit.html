@@ -1,22 +1,19 @@
 <div>
-
     <div class="njc-header">
         <a href="#/character/" class="njc-header-back">
             <svg class="njc-header-back-icon">
                 <use xlink:href="static/icons.svg#svgicon-left"></use>
             </svg>
-        </a><!--
-    --><a href="#/character/" class="njc-header-back-text">{{character.name}}, {{character | rank}}</a>
+        </a>
+        <a href="#/character/" class="njc-header-back-text">{{character.name}}, {{character | rank}}</a>
         <span class="njc-header-misc">
-      <span class="njc-header-xp">{{character | xp:this}}</span>
-      <span class="njc-header-legend">xp</span>
-    </span>
+            <span class="njc-header-xp">{{character | xp:this}}</span>
+            <span class="njc-header-legend">xp</span>
+        </span>
     </div>
 
     <div class="njc-banner">
-    <span class="njc-banner-legend">
-      Total XP :
-    </span>
+        <span class="njc-banner-legend">Total XP :</span>
         <input type="text" class="njc-banner-total-xp" ng-model="character.xp" ng-change="setMaxXp()"/>
         <span class="njc-banner-edit">Modifier</span>
     </div>
@@ -82,5 +79,4 @@
             {{additionalSkill.name}}
         </div>
     </div>
-
 </div>
